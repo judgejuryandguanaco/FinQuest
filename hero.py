@@ -1,0 +1,3 @@
+#hero.py
+
+user = None
