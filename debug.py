@@ -2,9 +2,12 @@
 import csv
 import characters
 import hero
+import shops
 # user input macro
 ##while 1:
 ## [statements]	
+
+Location = "gulden"
 
 def debug():
 	# create a grue
@@ -12,6 +15,7 @@ def debug():
 	characters.fight(hero.user, monster)
 	monster = create_monster('Llama')
 	characters.fight(hero.user, monster)
+	shops.shop(Location, "Stock Exchange")
 	return('Start Menu')
 		
 def create_monster(Name):
@@ -24,4 +28,3 @@ def create_monster(Name):
 					Vitality = int(row[3])
 					break;
 	return characters.character(Name, HP, Strength, Vitality, 0, 'MAS', 'MAS') # lazy: not sure if monsters have shares yet. use M&S until then
-	

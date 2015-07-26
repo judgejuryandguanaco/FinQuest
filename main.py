@@ -3,30 +3,38 @@ import sys
 
 
 import statemachine
-import stockmarket
+import shops
 import characters
 from yahoo_finance import Share
 import hero
 
 import site
 
+# 
+import shops
+
 # Geographical locations
 # import gulden
 import debug
 
 def start_menu():
-	options = ('New Game (n)', 'Load (l)', 'Options (o)', 'Exit (e)')
+	options = {'New Game', 'Load', 'Options', 'Exit'}
 	option_chars = {'n', 'l', 'o', 'e'}
-	print(options)
+	return input_menu(options, option_chars)
+	
+def input_menu(text, chars):
+    for n in text:
+		print(text(n), " (", chars(n), ") ")
+	
 	while 1:
 		selection = input()
-		if selection in option_chars: break;
-	if selection is 'n': nextState = 'New Game'
-	if selection is 'l': nextState = 'Load Menu'
-	if selection is 'o': nextState = 'Option Menu'
-	if selection is 'e': nextState = 'Exit'
-	return(nextState)
+		if selection in chars: break;
 	
+	for n in chars:
+		if selection is chars[n]: nextState = text[n]
+	
+	return(nextState)
+
 def new_game():
 	# preprocessor statement thing? if debug then this, otherwise normal option
 	# Create your character

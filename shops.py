@@ -1,4 +1,6 @@
 import yahoo_finance
+import csv
+import statemachine
 
 #Create the mechanicals to buy and sell
 #Shops in different towns should be customisable: what they sell? what the shopkeeper says?
@@ -8,25 +10,42 @@ def shop(Location, Name):
 		shops_csv = csv.reader(shops)
 		
 		# Search for the row 
-		for row in shop_csv:
+		for row in shops_csv:
 				if row[0] == Location:
-					if row[1] = Name
+					if row[1] == Name:
 						Introduction = row[2]
-					break;
+						Talk = row[3]
+						break;
 					
 	shop_machine = statemachine.StateMachine()
 	
-	shop_machine(state1)
+	shop_machine.add_state('Introduction', state1(Introduction))
+	
+	shop_machine.set_start('Introduction')
+	shop_machine.run()
 	return
 
 def state1(Introduction):
 	print(Introduction)
 	
+	return input_menu(["Talk", "See Items", "Exit"], ["t", "i", "e"])
 	
-
+def talk():
+	print(Talk)
+		
+def input_menu(text, chars):
+	for n in text:
+		print(text[n], " (", chars[n], ') ')
 	
+	while 1:
+		selection = input()
+		if selection in chars: break;
 	
+	for n in chars:
+		if selection is chars[n]: nextState = text[n]
 	
+	return nextState
+		
 	
 # This is the store where you can buy and sell your shares. Currently FTSE100 is accessible. In the future more markets can be added.
 class stockmarket:
